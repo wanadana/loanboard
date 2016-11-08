@@ -1,18 +1,10 @@
 Rails.application.routes.draw do
+ resources :users, only: [:show] do
+  resources :boards, only: [:new, :create, :edit, :destroy]
+ end
+resources :boards, only: [:index, :show]
   devise_for :users
-  get 'users/index'
 
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/create'
-
-  get 'users/edit'
-
-  get 'users/update'
-
-  get 'users/destroy'
 
   root to: "pages#home"
 end

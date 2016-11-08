@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-u1 = User.create(first_name: 'Tony', last_name: 'Stark', role: 'renter', address: '420 down under', email: 'tony@stark.com')
-u2 = User.create(first_name: 'Carla', last_name: 'Carla', role: 'renter', address: '420 Amsterdam', email: 'carla@carla.com')
-u3 = User.create(first_name: 'Chicken', last_name: 'Man', role: 'owner', address: '420 Under down', email: 'chicken@man.com')
+u1 = User.create(first_name: 'Tony', last_name: 'Stark', role: 'renter', address: '420 down under', email: 'tony@stark.com', password: 'ballsack', password_conformation: 'ballsack')
+u2 = User.create(first_name: 'Carla', last_name: 'Carla', role: 'renter', address: '420 Amsterdam', email: 'carla@carla.com', password: 'titties', password_conformation: 'titties')
+u3 = User.create(first_name: 'Chicken', last_name: 'Man', role: 'owner', address: '420 Under down', email: 'chicken@man.com', password: 'chicken', password_conformation: 'chicken')
 
-b1 = Board.create(description: 'long', price: '420', category: 'Longboard', user: u3)
-b2 = Board.create(description: 'penny', price: '42.0', category: 'Pennyboard', user: u3)
+b1 = Board.create(description: 'long', price: 420, category: 'Longboard', user: u3)
+b2 = Board.create(description: 'penny', price: 42.0, category: 'Penny Board', user: u3)
 
 r1 = Review.create(content: 'this board was long.', user: u1, board: b1)

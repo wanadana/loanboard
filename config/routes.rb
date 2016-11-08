@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'users/index'
 
   get 'users/show'
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
 
   get 'users/destroy'
 
-  root to: "home#index"
+  root to: "pages#home"
 end

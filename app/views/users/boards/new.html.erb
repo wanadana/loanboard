@@ -10,6 +10,9 @@
 
 <%= f.select :category, @categories %>
 
+<%= f.file_field :photo %>
+<%= f.hidden_field :photo_cache %>
+
 <%= f.submit %>
 <% end %>
 

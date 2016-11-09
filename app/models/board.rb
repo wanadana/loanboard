@@ -8,4 +8,5 @@ class Board < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :category, inclusion: { in: CATEGORIES, allow_nil: false }, presence: true
+  mount_uploader :photo, PhotoUploader
 end

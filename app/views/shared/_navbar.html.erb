@@ -25,6 +25,8 @@
 
     <!-- I removed this Notification link-->
 
+    <%= if user_signed_in? %>
+
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
@@ -32,11 +34,18 @@
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li><a href="#">Profile</a></li>
           <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>
+            <%=t(".sign_out", default: "Log out")%>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
 
+    <% else %>
+    <%= link_to t(".sign_in", default:"Log in"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
     <!-- Button (call-to-action) -->
     <a href="" class="navbar-wagon-item navbar-wagon-button btn">Rent your board</a>
   </div>

@@ -3,6 +3,8 @@
   <div class="col-sm-6 col-md-4">
     <ul>
       <li>
+        <%= cl_image_tag(board.photo) %>
+        <br>
         <%= board.description %>
         <br>
         <%= board.price %>
@@ -12,4 +14,3 @@
     </ul>
   </div>
   <% end %>
-

@@ -3,7 +3,6 @@ class Users::BoardsController < ApplicationController
   # prepend_view_path "app/views/boards"
   def new
     @board = Board.new
-    render "boards/new.html.erb"
   end
 
   def create
@@ -12,7 +11,7 @@ class Users::BoardsController < ApplicationController
     if @board.save
       redirect_to boards_path
     else
-    render "boards/new.html.erb"
+    render :new
     end
   end
 
@@ -37,7 +36,7 @@ class Users::BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:description, :price, :category)
+    params.require(:board).permit(:description, :price, :category, :photo, :photo_cache)
   end
 
   def set_categories

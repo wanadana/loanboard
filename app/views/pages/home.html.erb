@@ -5,6 +5,18 @@
   <title>Document</title>
 </head>
 <body>
+<div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="filter"></div>
+        <!-- <video autoplay loop class="fillWidth"> -->
+          <%= video_tag "skate.mp4", autoplay: true, loop: true   %>
+          <%= video_tag "skate.webm", autoplay: true, loop: true   %>
+        <div class="poster hidden">
+            <%= image_tag "skate.jpg" %>
+        </div>
+    </div>
+</div>
+
 <% if @user %>
 <p><%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-primary" %></p>
 <% end %>

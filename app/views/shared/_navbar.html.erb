@@ -29,7 +29,13 @@
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
+        <!-- This is where fb picture starts -->
+        <% if current_user.facebook_picture_url %>
           <%= image_tag current_user.facebook_picture_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% else %>
+           <%= image_tag("http://placehold.it/50x50", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", data: { toggle: "dropdown"}) %>
+          <% end %>
+          <!-- This is where fb picture ends -->
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>

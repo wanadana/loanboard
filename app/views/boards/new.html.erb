@@ -1,2 +1,15 @@
-<h1>Boards#new</h1>
-<p>Find me in app/views/boards/new.html.erb</p>
+<h1>Add a new Board</h1>
+
+<%= form_for([current_user, @board]) do |f| %>
+
+<%= f.label :description %>
+<%= f.text_field :description, placeholder:"Board description" %>
+
+<%= f.label :price %>
+<%= f.text_field :price, placeholder:"Price per timeslot" %>
+
+<%= f.select :category, @categories %>
+
+<%= f.submit %>
+<% end %>
+

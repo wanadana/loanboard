@@ -16,6 +16,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'devise'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -27,8 +28,6 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 

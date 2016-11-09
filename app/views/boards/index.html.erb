@@ -3,7 +3,7 @@
   <div class="col-sm-6 col-md-4">
     <ul>
       <li>
-        <%= cl_image_tag(board.photo) %>
+        <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
         <br>
         <%= board.description %>
         <br>

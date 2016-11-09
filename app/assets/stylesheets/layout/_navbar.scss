@@ -44,7 +44,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: #8377D1;
   text-decoration: none;
 }
 
@@ -52,17 +52,17 @@
 .navbar-wagon-button {
   margin-left: 10px;
   padding: 0 20px;
-  border-radius: 20em;
+  border-radius: 5px;
   line-height: 40px;
-  background-color: #D23333;
-  color: white;
+  background-color: transparent;
+  color: #616668;
   font-size: 14px;
-  border: 2px solid #D23333;
+  border: 2px solid #CFCFCD;
 }
 .navbar-wagon-button:hover {
   color: white;
-  background: #D23333;
-  border-color: #ac2626;
+  background: #CFCFCD;
+  border-color: #CFCFCD;
 }
 
 /* Navbar search form */
@@ -89,14 +89,15 @@
   line-height: 40px;
   font-weight: lighter;
   color: #666666;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #CFCFCD;
   border-radius: 5px;
   padding: 0 10px;
   font-size: 14px;
   outline: none;
+  width: 300px;
 }
 .navbar-wagon-search-input:focus  {
-  border: 1px solid #CCCCCC;
+  border: 2px solid #CFCFCD;
 }
 
 /* Navbar dropdown menu */

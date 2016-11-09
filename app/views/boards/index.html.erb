@@ -5,6 +5,8 @@
       <li>
         <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
         <br>
+        <%= link_to board.user.email, board_path(board)  %>
+        <br>
         <%= board.description %>
         <br>
         <%= board.price %>

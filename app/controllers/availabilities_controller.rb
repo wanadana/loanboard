@@ -62,6 +62,30 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
+  def status
+    booked_by.present? ? 'Booked' : 'Available'
+  end
+
+  def make_booking
+    @availability = Availability.find(params[:id])
+    if @availability.available?
+      @availability.make_booking(current_user)
+    else
+      "Sorry, already booked"
+    end
+  end
+
+  def cancel_booking
+    @availability = Availability.find(params[:id])
+    if @availability.available?
+      @availability.cancel_booking
+    else
+      "Error"
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_availability
@@ -71,6 +95,6 @@ class AvailabilitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
       # params.fetch(:availability, { })
-      params.require(:availability).permit(:board_id, :date, :timeslot, :status)
+      params.require(:availability).permit(:board_id, :date)
     end
 end

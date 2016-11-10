@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   #   resources :reviews, only: [:create, :destroy]
    end
 
+  resources :availabilities do
+    patch 'make_booking', on: :member
+    patch 'cancel_booking', on: :member
+   end
+
   resources :availabilities
 
   root to: "pages#home"

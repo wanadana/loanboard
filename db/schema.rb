@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109143516) do
+ActiveRecord::Schema.define(version: 20161110111105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "availabilities", force: :cascade do |t|
     t.date     "date"
-    t.string   "timeslot"
     t.integer  "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "status"
+    t.integer  "booked_by"
+    t.datetime "booked_on"
     t.index ["board_id"], name: "index_availabilities_on_board_id", using: :btree
   end
 

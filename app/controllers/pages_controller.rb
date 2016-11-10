@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
+  layout "home"
 
   def home
-    render layout: "home"
     @user = current_user
   end
 end

@@ -28,11 +28,12 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    @availability = Availability.new(availability_params)
+    @board = Board.find(params[:board_id])
+    @availability = @board.availabilities.new(date: params[:date])
 
     respond_to do |format|
       if @availability.save
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        format.html { redirect_to edit_board_path(@board), notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else
         format.html { render :new }
@@ -58,9 +59,10 @@ class AvailabilitiesController < ApplicationController
   # DELETE /availabilities/1
   # DELETE /availabilities/1.json
   def destroy
+    @board = @availability.board
     @availability.destroy
     respond_to do |format|
-      format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
+      format.html { redirect_to edit_board_path(@board), notice: 'Availability was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -101,7 +103,7 @@ class AvailabilitiesController < ApplicationController
       start_date = (seldate - (past_weeks * 7).days).monday
       end_date = start_date + ((past_weeks + 1 + future_weeks) * 7).days - 1.day
       result = (start_date .. end_date).to_a.map do |date|
-        [date, Availability.where("date = ?", date).first]
+        [date, @board.availabilities.where("date = ?", date).first]
       end
       result.each_slice(7).to_a.transpose
     end

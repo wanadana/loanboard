@@ -1,6 +1,6 @@
 class Availability < ApplicationRecord
   belongs_to :board
-  # belongs_to :booker, foreign_key: :booked_by, class_name: 'User'
+  has_one :booker, :class_name => "User", :foreign_key => "id", :primary_key => "booked_by"
 
   validates :date, presence: true
   # validates :timeslot, presence: true

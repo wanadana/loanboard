@@ -1,19 +1,17 @@
 <% @boards.each do |board|%>
   <div class="col-sm-6 col-md-4">
-    <!-- <ul> -->
-      <!-- <li> -->
-        <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
-        <br>
-        <%= link_to board.user.email, board_path(board)  %>
-        <br>
-        <%= board.description %>
-        <br>
-        <%= board.price %>
-        <br>
-        <%= board.category %>
-        <br>
-        <%= link_to "manage board", edit_user_board_path(board.user, board) %>
-      <!-- </li> -->
-    <!-- </ul> -->
+    <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
+    <br>
+    <%= link_to board.user.email, board_path(board)  %>
+    <br>
+    <%= board.description %>
+    <br>
+    <%= board.price %>
+    <br>
+    <%= board.category %>
+    <br>
+    <%= link_to "manage board", edit_user_board_path(board.user, board) %>
+    <br>
+    <%= link_to 'Rent this board!', board_availabilities_path(board) %>
   </div>
   <% end %>

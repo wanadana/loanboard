@@ -8,14 +8,11 @@ Rails.application.routes.draw do
 
   resources :boards, only: [:index, :show] do
   #   resources :reviews, only: [:create, :destroy]
-   end
-
-  resources :availabilities do
-    patch 'make_booking', on: :member
-    patch 'cancel_booking', on: :member
-   end
-
-  resources :availabilities
+    resources :availabilities, shallow: true do
+      patch 'make_booking', on: :member
+      patch 'cancel_booking', on: :member
+    end
+  end
 
   root to: "pages#home"
 end

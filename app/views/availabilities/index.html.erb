@@ -2,7 +2,47 @@
 
 <h1>Availabilities</h1>
 
-<table class="table">
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <th>
+        <% months = @day_locations.first.map{|x| x[0].strftime("%B")} %>
+        <% months.group_by{|x| x}.map {|k, v| [k,v.size]}.each do |month| %>
+          <th colspan="<%= month[1] %>"> <%= month[0] %></th>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <% @day_locations.first.each do |day| %>
+          <th><%= day[0].strftime("%d") %></th>
+        <% end %>
+      </th>
+    </tr>
+    <% @day_locations.each do |line| %>
+      <tr>
+        <th><%= line.first[0].strftime("%A") %></th>
+        <% line.each do |day| %>
+          <% if day[1] %>
+            <% if day[1].status == 'Available' %>
+              <td class="success">
+                <%= link_to 'Make Booking', make_booking_availability_path(day[1]), method: :patch %>
+              </td>
+            <% else %>
+              <td class="danger">
+                <%= link_to 'Cancel Booking', cancel_booking_availability_path(day[1]), method: :patch %>
+              </td>
+            <% end %>
+          <% else %>
+            <td class="active"></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- <table class="table">
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -17,11 +57,18 @@
         <td><%= link_to 'Show', availability %></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
         <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= availability.status %></td>
+        <% if availability.available? %>
+          <td><%= link_to 'Make Booking', make_booking_availability_path(availability), method: :patch %></td>
+        <% else %>
+          <td><%= link_to 'Cancel Booking', cancel_booking_availability_path(availability), method: :patch %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
 
 <br>
 
-<%= link_to 'New Availability', new_availability_path %>
+<%#= link_to 'New Availability', new_availability_path %>
+<%= link_to 'Back', boards_path, class: "btn btn-default" %>

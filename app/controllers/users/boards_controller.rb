@@ -1,6 +1,8 @@
 class Users::BoardsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
   # prepend_view_path "app/views/boards"
+  before_action :set_board, only: [:edit, :destroy]
+
   def new
     @board = Board.new
   end
@@ -31,11 +33,15 @@ class Users::BoardsController < ApplicationController
   end
 
   def destroy
-    @board.destory
+    @board.destroy
     redirect_to boards_path
   end
 
   private
+
+  def set_board
+    @board = Board.find(params[:id])
+  end
 
   def board_params
     params.require(:board).permit(:description, :price, :category, :photo, :photo_cache)

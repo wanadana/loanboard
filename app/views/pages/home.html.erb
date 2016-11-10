@@ -5,21 +5,35 @@
   <title>Document</title>
 </head>
 <body>
-<div class="homepage-hero-module">
-    <div class="video-container">
+  <div class="container">
+    <div class="homepage-hero-module">
+      <div class="video-container">
         <div class="filter"></div>
-        <!-- <video autoplay loop class="fillWidth"> -->
-          <%= video_tag "skate.mp4", autoplay: true, loop: true   %>
-          <%= video_tag "skate.webm", autoplay: true, loop: true   %>
-        <div class="poster hidden">
-            <%= image_tag "skate.jpg" %>
+        <%= video_tag "skate.mp4", autoplay: true, loop: true   %>
+        <%= video_tag "skate.webm", autoplay: true, loop: true   %>
+        <div class="title-container">
+          <div class="headline">
+            <h2 class="text-white text-thin">This is how we roll</h2>
+            <h5 class="text-white text-thin">Start riding through your city today!</h5>
+            <br>
+            <div class="row">
+              <% if @user %>
+                <div class="col-xs-6">
+                  <%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-loanboard" %>
+                </div>
+                <div class="col-xs-6"><%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %></div>
+            </div>
+              <% else %>
+                <div class="col-xs-12"><%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %></div>
+              <% end %>
+            </div>
+          </div>
         </div>
+        <div class="poster hidden">
+          <%= image_tag "skate.jpg" %>
+        </div>
+      </div>
     </div>
-</div>
-
-<% if @user %>
-<p><%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-primary" %></p>
-<% end %>
-<p><%= link_to 'View all Boards', boards_path, class:"btn btn-primary" %></p>
-</body>
-</html>
+  </div>
+  </body>
+  </html>

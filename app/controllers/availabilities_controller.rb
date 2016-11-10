@@ -1,10 +1,13 @@
 class AvailabilitiesController < ApplicationController
-  before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_availability, only: [:show, :edit, :update, :destroy, :make_booking, :cancel_booking]
 
   # GET /availabilities
   # GET /availabilities.json
   def index
-    @availabilities = Availability.all
+    @board = Board.find(params[:board_id])
+    @availabilities = @board.availabilities
+    @day_locations = build_planner
   end
 
   # GET /availabilities/1
@@ -25,11 +28,12 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   # POST /availabilities.json
   def create
-    @availability = Availability.new(availability_params)
+    @board = Board.find(params[:board_id])
+    @availability = @board.availabilities.new(date: params[:date])
 
     respond_to do |format|
       if @availability.save
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        format.html { redirect_to edit_board_path(@board), notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else
         format.html { render :new }
@@ -55,33 +59,30 @@ class AvailabilitiesController < ApplicationController
   # DELETE /availabilities/1
   # DELETE /availabilities/1.json
   def destroy
+    @board = @availability.board
     @availability.destroy
     respond_to do |format|
-      format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
+      format.html { redirect_to edit_board_path(@board), notice: 'Availability was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  def status
-    booked_by.present? ? 'Booked' : 'Available'
-  end
-
   def make_booking
-    @availability = Availability.find(params[:id])
     if @availability.available?
       @availability.make_booking(current_user)
     else
-      "Sorry, already booked"
+      puts "Sorry, already booked"
     end
+    redirect_to board_availabilities_url(@availability.board)
   end
 
   def cancel_booking
-    @availability = Availability.find(params[:id])
-    if @availability.available?
-      @availability.cancel_booking
+    if current_user.id == @availability.booked_by
+      @availability.cancel_booking_booked
     else
-      "Error"
+      puts "You can only cancel your own booking"
     end
+    redirect_to board_availabilities_url(@availability.board)
   end
 
 
@@ -96,5 +97,14 @@ class AvailabilitiesController < ApplicationController
     def availability_params
       # params.fetch(:availability, { })
       params.require(:availability).permit(:board_id, :date)
+    end
+
+    def build_planner(past_weeks=1, seldate=Date.today, future_weeks=4)
+      start_date = (seldate - (past_weeks * 7).days).monday
+      end_date = start_date + ((past_weeks + 1 + future_weeks) * 7).days - 1.day
+      result = (start_date .. end_date).to_a.map do |date|
+        [date, @board.availabilities.where("date = ?", date).first]
+      end
+      result.each_slice(7).to_a.transpose
     end
 end

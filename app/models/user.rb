@@ -5,11 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+  mount_uploader :photo, PhotoUploader
 
   has_many :reviews, dependent: :destroy
   has_many :boards, dependent: :destroy
   has_many :bookings, dependent: :destroy
   # validates :address, presence: true
+
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice("provider", "uid")

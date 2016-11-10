@@ -4,7 +4,7 @@
       <!-- <li> -->
         <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
         <br>
-        <%= link_to board.user.email, board_path(board)  %>
+        <%= link_to "#{board.user.first_name} #{board.user.last_name}", board_path(board)  %>
         <br>
         <%= board.description %>
         <br>

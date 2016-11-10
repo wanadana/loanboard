@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     resources :boards, controller: 'users/boards'
   end
 
-  resources :boards, only: [:index, :show] do
-  #   resources :reviews, only: [:create, :destroy]
+  resources :boards do
     resources :availabilities, shallow: true do
       patch 'make_booking', on: :member
       patch 'cancel_booking', on: :member

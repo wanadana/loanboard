@@ -10,7 +10,7 @@
     <br>
     <%= board.category %>
     <br>
-    <%= link_to "manage board", edit_user_board_path(board.user, board) %>
+    <%= link_to "manage board", edit_board_path(board) if current_user == board.user%>
     <br>
     <%= link_to 'Rent this board!', board_availabilities_path(board) %>
   </div>

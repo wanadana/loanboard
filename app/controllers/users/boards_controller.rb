@@ -1,4 +1,5 @@
 class Users::BoardsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_categories, only: [:new, :create, :edit, :update]
   # prepend_view_path "app/views/boards"
   before_action :set_board, only: [:edit, :destroy]
@@ -51,13 +52,5 @@ class Users::BoardsController < ApplicationController
     @categories = Board::CATEGORIES
   end
 
-  def build_planner(past_weeks=1, seldate=Date.today, future_weeks=4)
-    start_date = (seldate - (past_weeks * 7).days).monday
-    end_date = start_date + ((past_weeks + 1 + future_weeks) * 7).days - 1.day
-    result = (start_date .. end_date).to_a.map do |date|
-      [date, Availability.where("date = ?", date).first.try(:status)]
-    end
-    result.each_slice(7).to_a.transpose
-  end
 end
 

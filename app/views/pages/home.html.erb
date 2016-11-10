@@ -37,3 +37,12 @@
   </div>
   </body>
   </html>
+<% if @user %>
+<p><%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-primary" %></p>
+<% end %>
+<p><%= link_to 'View all Boards', boards_path, class:"btn btn-primary" %></p>
+
+<p> <%= current_user %> </p>
+
+</body>
+</html>

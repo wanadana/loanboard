@@ -1,2 +1,9 @@
 <h1>Reviews#create</h1>
 <p>Find me in app/views/reviews/create.html.erb</p>
+
+<%= form_for([current_user, @review]) do |f| %>
+
+<%= f.label :content %>
+<%= f.text_field :content, placeholder:"Leave your feedback..." %>
+<%= f.submit %>
+<% end %>

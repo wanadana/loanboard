@@ -1,0 +1,13 @@
+<%= form_for(@availability) do |f| %>
+  <%= @errors %>
+  <div class="form-inputs">
+    <%= f.hidden_field :board_id %>
+    <%= f.date_select :date %>
+    <%= f.text_field :timeslot, placeholder: "Morning/Afternoon" %>
+    <%= f.text_field :status, placeholder: "Available" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

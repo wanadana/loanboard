@@ -1,3 +1,9 @@
 <h1>Boards#show</h1>
 
-<%= board.description %>
+<ul>
+  <% @board.availabilities.each do |availability| %>
+    <li>
+      <%= availability.date %> <%= availability.status %>
+    </li>
+  <% end %>
+</ul>

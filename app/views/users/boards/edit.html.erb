@@ -1,0 +1,41 @@
+Edit Board
+
+I want to be able to:
+<ul>
+  <li>Edit the board image</li>
+  <li>Update the availability</li>
+  <li>Block/Soft delete the board</li>
+</ul>
+
+<%= link_to "create availability", new_availability_path(board_id:@board) %>
+
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <th>
+        <% months = @day_locations.first.map{|x| x[0].strftime("%B")} %>
+        <% months.group_by{|x| x}.map {|k, v| [k,v.size]}.each do |month| %>
+          <th colspan="<%= month[1] %>"> <%= month[0] %></th>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <% @day_locations.first.each do |day| %>
+          <th><%= day[0].strftime("%d") %></th>
+        <% end %>
+      </th>
+    </tr>
+    <% @day_locations.each do |line| %>
+      <tr>
+        <th><%= line.first[0].strftime("%A") %></th>
+        <% line.each do |day| %>
+          <td class="<%= day[1] == 'available' ? 'success' : 'danger' %>">
+            <%= day[0] %>
+            <!-- <%= link_to "Make Available", '#' unless day[1]%> -->
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

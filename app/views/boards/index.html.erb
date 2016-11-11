@@ -1,19 +1,28 @@
 <% @boards.each do |board|%>
   <div class="col-sm-6 col-md-4">
-    <!-- <ul> -->
-      <!-- <li> -->
-        <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
-        <br>
+    <div class="card">
+      <%= cl_image_tag(board.photo, height: 250, width: 350, crop: :fill) %>
+      <div class="desc-container container">
         <%= link_to board.user.email, board_path(board)  %>
         <br>
-        <%= board.description %>
+        Price: <%= board.price %>
         <br>
-        <%= board.price %>
+        Categoty: <%= board.category %>
         <br>
-        <%= board.category %>
+        Description: <%= truncate(board.description, :length => 30) %>
         <br>
-        <%= link_to "manage board", edit_user_board_path(board.user, board) %>
-      <!-- </li> -->
-    <!-- </ul> -->
+        <div class="row">
+        <% if current_user == board.user %>
+          <div class="col-sm-12">
+            <%= link_to "Manage", edit_board_path(board), class:"button btn-block"%>
+          </div>
+          <% else %>
+          <div class="col-sm-12">
+            <%= link_to 'Rent', board_availabilities_path(board), class:"button btn-block"%>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   <% end %>

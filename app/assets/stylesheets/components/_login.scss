@@ -1,0 +1,100 @@
+.btn-fb {
+  border-color: #3B5998;
+  background-color: #3B5998;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.btn-fb:hover {
+  border-color: #4568b2;
+  background-color: #4568b2;
+  color: #fff;
+  text-decoration: none;
+}
+
+.fa-facebook{
+  color: #fff;
+  font-size: 25px;
+}
+
+.btn-allign {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
+.login-btn {
+  color: #fff;
+  background-color: #8377D1;
+  border-color: #8377D1;
+  text-align: center;
+  padding: 20px 0;
+  text-decoration: none;
+}
+
+.login-btn:active {
+  color: #fff;
+  background-color: #573280;
+  border-color: #573280;
+  text-decoration: none;
+}
+
+.login-btn:hover {
+  color: #fff;
+  background-color: #573280;
+  border-color: #573280;
+  text-decoration: none;
+}
+
+.signup-or-separator {
+  background-color: 0;
+  height: 34px;
+  position: relative;
+  text-align:center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.signup-or-separator--text {
+  background-color: #fff;
+  display: inline-block;
+  padding: 8px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.signup {
+  text-decoration: none;
+  float: left;
+  display: inline-block;
+  margin-right: 4px;
+  line-height: 34px;
+  font-size: 16px;
+}
+.signup-btn {
+  text-decoration: none;
+  border: 1px solid #8377D1;
+  color: #8377D1;
+  float: right;
+  padding: 7px 21px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-align: center;
+  width: 100px;
+}
+
+.signup-btn:hover {
+  text-decoration: none;
+  border: 1px solid #8377D1;
+  color: #8377D1;
+  float: right;
+  padding: 7px 21px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-align: center;
+}

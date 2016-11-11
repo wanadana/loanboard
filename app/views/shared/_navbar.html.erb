@@ -62,7 +62,7 @@
     <!-- Button (call-to-action) -->
     <%= link_to t(".top_call_to_action", default: "New Board"), new_user_board_path(current_user), class: "navbar-wagon-item navbar-wagon-button btn" %>
 
-      <% else %>
+    <% else %>
 
     <%= link_to t(".top_call_to_action", default: "New Board"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
 

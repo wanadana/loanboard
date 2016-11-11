@@ -1,46 +1,5 @@
 <h2>Edit Board Availability</h2>
 
-<div class="row">
-  <div class="col-sm-1">Month:</div>
-  <% months = @day_locations.first.map{|x| x[0].strftime("%B")} %>
-  <% months.group_by{|x| x}.map {|k, v| [k,v.size]}.each do |month| %>
-    <div class="col-sm-<%= month[1] %>"><%= month[0] %></div>
-  <% end %>
-</div>
-<div class="row">
-  <div class="col-sm-1">Wk. begining:</div>
-  <% @day_locations.first.each do |day| %>
-    <div class="col-sm-1"><%= day[0].strftime("%d") %></div>
-  <% end %>
-</div>
-<% @day_locations.each do |line| %>
-  <div class="row">
-    <div class="col-sm-1">
-      <%= line.first[0].strftime("%A") %>
-    </div>
-    <% line.each do |day| %>
-      <% if day[1] %>
-        <% if day[1].status == 'Available' %>
-          <div class="col-sm-1 success">
-            <%= link_to "Cancel", day[1], method: :delete, data: { confirm: 'Are you sure you want cancel this availability?' } %>
-          </div>
-        <% else %>
-          <div class="col-sm-1 danger">
-            <%= link_to 'Show Booking', day[1] %>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="col-sm-1 active">
-          <%= link_to "Availabile on #{day[0]}", board_availabilities_path(date: day[0], board_id: @board), method: :post %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
-
-  <%= link_to "Delete board", user_board_path(@board), method: :delete, data: { confirm: 'Are you sure you want to delete this awesome board?' } %>
-  <%= link_to "Back", boards_path %>
-
 <table class="table table-bordered table-striped">
   <tbody>
     <tr>
@@ -82,5 +41,7 @@
     <% end %>
   </tbody>
 </table>
-  <%= link_to "Delete board", user_board_path(@board), method: :delete, data: { confirm: 'Are you sure you want to delete this awesome board?' } %>
+  <%= link_to "Delete board", users_board_path(@board), method: :delete, data: { confirm: 'Are you sure you want to delete this awesome board?' } %>
   <%= link_to "Back", boards_path %>
+  <%= link_to "Edit board", edit_users_board_path(@board) %>
+

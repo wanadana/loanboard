@@ -1,0 +1,33 @@
+.container {
+  padding-top: 20px;
+}
+
+.profile {
+  padding-bottom: 500px
+}
+
+#prof-bar {
+  padding-left: 25px;
+  position: relative;
+  margin: 0;
+}
+
+.panel-body {
+  // display: inline-table;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-card {
+  // position: relative;
+  // left: 50px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+
+.panel-text {
+padding-left: 100px;
+  }
+
+

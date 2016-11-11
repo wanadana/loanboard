@@ -21,7 +21,6 @@ class Users::BoardsController < ApplicationController
 
   def edit
     render "You Suck" unless current_user = @board.user
-    @day_locations = build_planner
   end
 
   def update

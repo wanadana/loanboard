@@ -10,7 +10,7 @@
         <h3>Start riding through your city today!</h3>
         <br>
         <% if @user %>
-        <%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-loanboard" %>
+        <%= link_to 'New Board', new_users_board_path(@user), class:"btn btn-loanboard" %>
         <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>
         <% else %>
         <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>

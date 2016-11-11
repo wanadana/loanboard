@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <!-- User info -->
+    <div class="col-md-3">
+      <div class="profile">
+        <div class="profile-pic">
+          <%= cl_image_tag current_user.photo, height: 200, width: 300, crop: :fill %>
+        </div>
+        <div class="profile-info">
+          <ul style="list-style-type: none;">
+            <li>
+              <%= current_user.first_name + " " + current_user.last_name %>
+            </li>
+            <li>
+              <%= current_user.email %>
+            </li>
+            <li>
+              <%= current_user.address %>
+            </li>
+            <br>
+            <%= link_to 'Edit Profile', edit_profile_path, class: "btn btn-default" %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Boards -->
+    <div class="col-md-9" id="prof-bar"></div>
+    <div class="panel-box">
+      <div class="panel-head">
+        <h5>My Boards</h5>
+      </div>
+      <div class="panel-body">
+        <% @user.boards.each do |board|%>
+        <div class="panel-card">
+          <div class="panel-img">
+            <%= cl_image_tag(board.photo, height: 125, width: 225, crop: :fill) %>
+          </div>
+          <div class="panel-text">
+            <%= board.description %>
+            <br>
+            <%= board.price %>
+            <br>
+            <%= board.category %>
+            <br>
+            <br>
+            <%= link_to "Edit board", edit_users_board_path(board), class: "btn btn-default" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- Bookings -->
+      <div class="col-md-9" id="prof-bar"></div>
+      <div class="panel-box">
+        <div class="panel-head">
+          <h5>My Bookings</h5>
+        </div>
+        <div class="panel-body">
+          <% @user.bookings.each do |booking|%>
+          <div class="panel-card">
+            <div class="panel-img">
+              <%= cl_image_tag(booking.board.photo, height: 125, width: 225, crop: :fill) %>
+            </div>
+            <div class="panel-text">
+              <%= booking.board.description %>
+              <br>
+              <%= booking.board.price %>
+              <br>
+              <%= booking.board.category %>
+              <br>
+              <br>
+              <%= booking.date %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
+

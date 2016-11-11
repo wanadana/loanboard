@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="col-sm-2">
+    Date:
+  </div>
+  <div class="col-sm-10">
+    <%= @availability.date %>
+  </div>
+</div>
+
+<br>
+Booked by:<%= @availability.booker.email %>
+<br>
+Booked on: <%= @availability.booked_on %>
+<br>
+
 <%= link_to 'Edit', edit_availability_path(@availability) %> |
-<%= link_to 'Back', availabilities_path %>
+<%= link_to 'Back', edit_board_path(@availability.board) %>

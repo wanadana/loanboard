@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :boards, dependent: :destroy
-  has_many :bookings, dependent: :destroy
+  has_many :bookings, :class_name => "Availability", :foreign_key => "booked_by", dependent: :destroy
   # validates :address, presence: true
 
 

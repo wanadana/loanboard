@@ -1,18 +1,33 @@
-<h1>Add a new Board</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>Add a new Board</h1>
+  </div>
+</div>
+
 
 <%= form_for([current_user, @board]) do |f| %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, placeholder:"Board description", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.text_field :price, placeholder:"Price per timeslot", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :category %>
+        <%= f.select :category, @categories, {}, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :photo %>
+        <%= f.file_field :photo %>
+        <%= f.hidden_field :photo_cache %>
+      </div>
 
-<%= f.label :description %>
-<%= f.text_field :description, placeholder:"Board description" %>
-
-<%= f.label :price %>
-<%= f.text_field :price, placeholder:"Price per timeslot" %>
-
-<%= f.select :category, @categories %>
-
-<%= f.file_field :photo %>
-<%= f.hidden_field :photo_cache %>
-
-<%= f.submit %>
+      <%= f.submit 'Create Board', class: 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>
 

@@ -1,6 +1,7 @@
 class Users::BoardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_board, only: [:edit, :destroy]
   # prepend_view_path "app/views/boards"
   before_action :set_board, only: [:edit, :destroy]
 
@@ -19,9 +20,7 @@ class Users::BoardsController < ApplicationController
   end
 
   def edit
-    @board = Board.find(params[:id])
     render "You Suck" unless current_user = @board.user
-    @day_locations = build_planner
   end
 
   def update
@@ -46,6 +45,10 @@ class Users::BoardsController < ApplicationController
 
   def board_params
     params.require(:board).permit(:description, :price, :category, :photo, :photo_cache)
+  end
+
+  def set_board
+    @board = Board.find(params[:id])
   end
 
   def set_categories

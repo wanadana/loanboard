@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :users do
-    resources :boards, controller: 'users/boards'
+  namespace :users do
+    resources :boards
   end
+  resource :profile, only: [:show, :edit, :update]
 
   resources :boards do
     resources :availabilities, shallow: true do

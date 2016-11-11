@@ -5,21 +5,20 @@
       <div class="filter"></div>
       <%= video_tag "skate.mp4", autoplay: true, loop: true   %>
       <%= video_tag "skate.webm", autoplay: true, loop: true   %>
-        <div class="title-container" >
-          <h1>This is how we roll</h1>
-          <h3>Start riding through your city today!</h3>
-          <br>
-          <% if @user %>
-          <%= link_to 'New Board', new_user_board_path(@user), class:"btn btn-loanboard" %>
-          <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>
-          <% else %>
-          <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>
-          <% end %>
-        </div>
+      <div class="title-container" >
+        <h1>This is how we roll</h1>
+        <h3>Start riding through your city today!</h3>
+        <br>
+        <% if @user %>
+        <%= link_to 'New Board', new_users_board_path(@user), class:"btn btn-loanboard" %>
+        <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>
+        <% else %>
+        <%= link_to 'View all Boards', boards_path, class:"btn btn-loanboard" %>
+        <% end %>
+      </div>
     </div>
     <div class="poster hidden">
       <%= image_tag "skate.jpg" %>
     </div>
   </div>
 </div>
-
